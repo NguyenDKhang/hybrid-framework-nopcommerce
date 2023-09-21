@@ -2,11 +2,10 @@
 <suite name="NopCommerce"> <!-- tên dự án-->
 
   <test name="Run on Firefor"> <!-- chạy trên môi trường nào-->
-   	<parameter name="browser" value="firefox"/>
+   	<parameter name="browser" value="chrome"/>
     <classes>
-      <class name="com.nopcommerce.user.Level_05_Page_Factor_Login"/>
+      <class name="com.nopcommerce.TestCase.Level_09_Dynamic_Locator"/>
     </classes>
   </test> <!-- Test -->
   
-
 </suite> <!-- Suite -->
