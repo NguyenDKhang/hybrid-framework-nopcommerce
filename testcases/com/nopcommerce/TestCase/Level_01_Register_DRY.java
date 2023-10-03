@@ -82,6 +82,7 @@ public class Level_01_Register_DRY {
 		driver.findElement(By.id("ConfirmPassword")).sendKeys("ASd1651c61616515");
 		
 		driver.findElement(By.id("register-button")).click();
+		explicitwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("")));
 		explicitwait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='result']")));
 		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='result']")).getText(), "Your registration completed");
 	}
