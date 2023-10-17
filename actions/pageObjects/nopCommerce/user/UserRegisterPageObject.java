@@ -3,6 +3,7 @@ package pageObjects.nopCommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import io.qameta.allure.Step;
 import pageUIs.nopCommerce.user.UserRegisterPageUI;
 
 public class UserRegisterPageObject extends BasePage{
@@ -56,12 +57,13 @@ public class UserRegisterPageObject extends BasePage{
 		waitForAllElementVisible(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.FIRST_NAME_TEXTBOX, firstNam);
 	}
-
+	@Step("input last name")
 	public void inputLastNameTextbox(String lastName) {
 		waitForAllElementVisible(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.LAST_NAME_TEXTBOX, lastName);		
 	}
-
+//	@Step("input email {0} and {1}")
+	@Step("input email {0}")
 	public void inputEmailTextbox(String email) {
 		waitForAllElementVisible(driver, UserRegisterPageUI.EMAIL_TEXTBOX);
 		sendkeyToElement(driver, UserRegisterPageUI.EMAIL_TEXTBOX, email);		
