@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite">
+  <parameter name = "browser" value = "chrome"/>
+  <test name="Test">
+    <classes>
+     <class name="com.liveguru.TestCase.Login"/>
+      <!-- <class name="com.liveguru.TestCase.Register"/>-->
+    </classes>
+  </test>   
+</suite> <!-- Suite -->

@@ -1,0 +1,53 @@
+[2023-11-27 23:11:06,465 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Pre-Conditon - Step 01: Open browser and Admin site
+[2023-11-27 23:11:12,316 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Pre-Conditon - Step 02: Enter to Username textbox with value: demo_web
+[2023-11-27 23:11:12,532 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Pre-Conditon - Step 03: Enter to PassWord textbox with value: 123456
+[2023-11-27 23:11:12,684 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Pre-Conditon - Step 04: Click to button login
+[2023-11-27 23:11:16,591 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 01: Click to 'Post' menu link
+[2023-11-27 23:11:18,497 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 02: Click to 'Add New' button
+[2023-11-27 23:11:20,498 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 03: Enter to post title
+[2023-11-27 23:11:20,641 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 04: Enter to post body
+[2023-11-27 23:11:23,944 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 04: Click to 'Pulish' button
+[2023-11-27 23:11:31,010 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Create_Post - Step 05: Verify 'Post published' message is displayed
+[2023-11-27 23:11:31,229 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Post - Step 01: Open 'Search Post' page
+[2023-11-27 23:11:32,756 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 02: Enter to search textbox
+[2023-11-27 23:11:32,912 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 03: Click to 'Search Posts' button
+[2023-11-27 23:11:35,762 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 04: Verify Search table contains 'Live code 54112'
+[2023-11-27 23:11:35,873 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 05: Verify Search table contains 'demo_web'
+[2023-11-27 23:11:35,991 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 06: Open End user site
+[2023-11-27 23:11:37,761 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 07: Verify post infor displayed at home
+[2023-11-27 23:11:38,136 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 08: Click to post title
+[2023-11-27 23:11:39,844 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 09: Verify Post info displayed at Post detail page
+[2023-11-27 23:11:40,165 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 01: Open Admin site
+[2023-11-27 23:11:41,730 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 02: Click to 'Post' menu link
+[2023-11-27 23:11:43,279 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 03: Enter to search textbox
+[2023-11-27 23:11:43,458 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 04: Click to 'Search Posts' button
+[2023-11-27 23:11:46,305 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 05: Click to post title link and navigate to Edit Post page
+[2023-11-27 23:11:48,091 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 06: Enter to post title
+[2023-11-27 23:11:48,236 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 07: Click body Visual
+[2023-11-27 23:11:48,359 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 08: Enter to post body
+[2023-11-27 23:11:51,631 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 09: Click to 'Update' button
+[2023-11-27 23:11:58,459 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Post - Step 10: Open 'Search Post' page
+[2023-11-27 23:11:59,925 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 11: Enter to search textbox
+[2023-11-27 23:12:00,123 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 12: Click to 'Search Posts' button
+[2023-11-27 23:12:02,961 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 13: Verify Search table contains 'Edit title 55134'
+[2023-11-27 23:12:03,056 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 14: Verify Search table contains 'demo_web'
+[2023-11-27 23:12:03,138 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 15: Open End user site
+[2023-11-27 23:12:04,795 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 16: Verify post infor displayed at home
+[2023-11-27 23:12:05,093 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 17: Click to post title
+[2023-11-27 23:12:06,744 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Search_Port - Step 18: Verify Post info displayed at Post detail page
+[2023-11-27 23:12:07,030 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 01: Open Admin site
+[2023-11-27 23:12:08,505 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 02: Click to 'Post' menu link
+[2023-11-27 23:12:10,015 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 03: Enter to search textbox
+[2023-11-27 23:12:10,171 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Edit_Post - Step 04: Click to 'Search Posts' button
+[2023-11-27 23:12:12,944 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 05: Select Post detail checkbox
+[2023-11-27 23:12:13,105 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 06: Select 'Move to Trash' item in dropdown
+[2023-11-27 23:12:13,266 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 07: Click to 'Apply' button
+[2023-11-27 23:12:16,238 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 08: Verfy '1 post moved to Trash.' message is displayed
+[2023-11-27 23:12:16,326 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 09: Enter to Search textbox
+[2023-11-27 23:12:16,503 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 10: Click to 'Search Posts' button
+[2023-11-27 23:12:19,322 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 11: Verfy 'No posts found' message is displayed
+[2023-11-27 23:12:19,392 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 12: Open End user site
+[2023-11-27 23:12:21,129 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 13: Verify post title undisplayed at Home page
+[2023-11-27 23:12:26,198 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 14: Enter to Search textbox
+[2023-11-27 23:12:26,393 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 15: Click to 'Search' button
+[2023-11-27 23:12:28,272 INFO com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search] - Delete_Post - Step 16: Verfy 'Nothing found' message is displayed

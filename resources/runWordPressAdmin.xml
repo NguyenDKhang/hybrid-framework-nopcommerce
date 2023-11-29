@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WordPress - Admin"> <!-- tên dự án-->
+
+	<listeners>
+		<listener class-name ="reportConfig.ReportNGListener"></listener>
+		<listener class-name ="org.uncommons.reportng.HTMLReporter"></listener>
+		<listener class-name ="org.uncommons.reportng.JUnitXMLReporter"></listener>
+		<listener class-name ="commons.MethodListener"></listener>
+	</listeners>
+
+  <parameter name="urlAdmin" value="http://localhost:55/wp-admin" />
+  <parameter name="urlUser" value="http://localhost:55/" />
+  <test name="Run on Firefor">
+   	<parameter name="browser" value="h_chrome"/>
+    <classes>
+       <class name="com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search"/>
+    </classes>
+  </test>
+  
+</suite> 

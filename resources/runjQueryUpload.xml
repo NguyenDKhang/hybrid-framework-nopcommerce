@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite">
+
+  <parameter name = "url" value = "https://blueimp.github.io/jQuery-File-Upload/"/>
+  <test name="JQuery Upload fie">
+    <classes>
+  <parameter name = "browser" value = "chrome"/>
+     <class name="com.jquery.datatable.Level_11_Upload_File"/>
+    </classes>
+  </test>   
+</suite> <!-- Suite -->
