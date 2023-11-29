@@ -6,10 +6,13 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.joda.time.DateTime;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -40,10 +43,25 @@ public class BaseTest {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			break;
+		case "h_chrome":
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");  
+//			options.addArguments("--headless");
+//			options.addArguments("-window-size=1920×1080");
+			driver = new ChromeDriver(options);
+			break;
 		case "firefox":
 //			System.setProperty("webdriver.gecko.driver", pojectPath + "\\browserDrivers\\geckodriver.exe");
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
+			break;
+		case "h_firefox":
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions optionsFx = new FirefoxOptions();
+			optionsFx.addArguments("--headless");
+			optionsFx.addArguments("window-size=1920×1080");
+			driver = new FirefoxDriver(optionsFx);
 			break;
 		case "edge":
 //			System.setProperty("webdriver.edge.driver", pojectPath + "\\browserDrivers\\msedgedriver.exe");
@@ -57,15 +75,31 @@ public class BaseTest {
 		driver.get(appUrl);
 		return driver;
 	}
+	
 	protected WebDriver getBrowserDriver(String browserName) {
+//		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
 		switch (browserName) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 			break;
+		case "h_chrome":
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("headless");
+			options.addArguments("window-size=1920×1080");
+			driver = new ChromeDriver(options);
+			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
+			break;
+		case "h_firefox":
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions optionsFx = new FirefoxOptions();
+			optionsFx.addArguments("headless");
+			optionsFx.addArguments("window-size=1920×1080");
+			driver = new FirefoxDriver(optionsFx);
 			break;
 		case "edge":
 			WebDriverManager.edgedriver().setup();
@@ -82,14 +116,12 @@ public class BaseTest {
 		boolean pass = true;
 		try {
 			Assert.assertTrue(condition);
-			log.info("_______________pass_______________");
 
 		} catch (Throwable e) {
 			pass = false;
 
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
-			log.info("_______________false______________");
 
 		}
 		return pass;
@@ -99,13 +131,11 @@ public class BaseTest {
 		boolean pass = true;
 		try {
 			Assert.assertFalse(condition);
-			log.info("__________pass__________");
 
 		} catch (Throwable e) {
 			pass = false;
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
-			log.info("_________false___________");
 
 		}
 		return pass;
@@ -115,12 +145,10 @@ public class BaseTest {
 		boolean pass = true;
 		try {
 			Assert.assertEquals(actual, expected);
-			log.info("________________pass________________");
 		} catch (Throwable e) {
 			pass = false;
 			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
 			Reporter.getCurrentTestResult().setThrowable(e);
-			log.info("________________false_______________");
 
 		}
 		return pass;
@@ -143,6 +171,36 @@ public class BaseTest {
 		}
 	}
 
+	protected String getCurrentDate() {
+		DateTime nowUTC = new DateTime();
+		int day = nowUTC.getDayOfMonth();
+		if (day < 10) {
+			String dayValue = "0" + day;
+			return dayValue;
+		}
+		return String.valueOf(day);
+	}
+
+	protected String getCurrentMonth() {
+		DateTime now = new DateTime();
+		int month = now.getMonthOfYear();
+		if (month < 10) {
+			String monthValue = "0" + month;
+			return monthValue;
+		}
+		return String.valueOf(month);
+	}
+
+	protected String getCurrentYear() {
+		DateTime now = new DateTime();
+		return String.valueOf(now.getYear());
+	}
+
+	protected String getCurrentDay() {
+		return getCurrentDate() + "/" + getCurrentMonth() + "/" + getCurrentYear();
+	}
+
+	
 	protected void closeBrowserDriver() {
 		String cmd = null;
 		try {

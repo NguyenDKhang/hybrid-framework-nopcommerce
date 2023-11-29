@@ -23,6 +23,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.nopcommerce.common.Common_01_Register_Cookie;
 
+import pageObject.wordpress.AdminDashboardPO;
+import pageObject.wordpress.AdminPostSearchPO;
+import pageObject.wordpress.PageGeneratorManager_WordPressAdmin;
+import pageObject.wordpress.UserHomePO;
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
@@ -161,7 +165,7 @@ public class BasePage {
 		return locatorType;
 	}
 	
-	private WebElement getWebElement(WebDriver driver, String locatorType) {
+	public WebElement getWebElement(WebDriver driver, String locatorType) {
 		return driver.findElement(getByLocator(locatorType));
 	}
 	
@@ -187,6 +191,11 @@ public class BasePage {
 		WebElement element = getWebElement(driver, getDynamicXpath(locatorType, dynamicValues));
 		element.clear();
 		element.sendKeys(valueText);
+	}
+
+	public void clearValueInElementByPressKey (WebDriver driver, String locatorType) {
+		WebElement element = this.getWebElement(driver,locatorType);
+		element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 	}
 	
 	public void selectItemInDefaultDropdownBy_Value (WebDriver driver, String locatorType, String valueText) {
@@ -232,9 +241,6 @@ public class BasePage {
 		}
 	}
 	
-	public String getAttrabuteValue (WebDriver driver, String locatorType, String attrabuteValue) {
-		return getWebElement(driver,locatorType).getAttribute(attrabuteValue) ;
-	}
 	
 	public String getElementText (WebDriver driver, String locatorType) {
 		return getWebElement(driver,locatorType).getText() ;
@@ -399,6 +405,16 @@ public class BasePage {
 		sleep(1);
 		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
+	
+	public void sendkeyToElementByJS(WebDriver driver, String locatorType, String value) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, locatorType));
+	}
+
+	public void sendkeyToElementByJS(WebDriver driver, String locatorType, String value, String... dynamicValues) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)));
+	}
 
 	public void clickToElementByJS(WebDriver driver, String locatorType) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -448,6 +464,18 @@ public class BasePage {
 		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
 	}
 
+	public String getElementAttribute(WebDriver driver, String locatorType, String attributeName) {
+		return getWebElement(driver, locatorType).getAttribute(attributeName);
+	}
+	
+	public String getAttrabuteValue (WebDriver driver, String locatorType, String attrabuteValue) {
+		return getWebElement(driver,locatorType).getAttribute(attrabuteValue);
+	}
+
+	public String getElementAttribute(WebDriver driver, String locatorType, String attributeName, String... dynamicValues) {
+		return getWebElement(driver, getDynamicXpath(locatorType, dynamicValues)).getAttribute(attributeName);
+	}
+	
 	public String getElementValidationMessage(WebDriver driver, String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;", getWebElement(driver, locator));
@@ -595,4 +623,90 @@ public class BasePage {
 		clickToElement(driver, BasePageNocommerceUI.LOGOUT_LINK_AT_ADMIN);
 		return PageGeneratorManager.getAdminLoginPageObject(driver);
 	}
+	
+
+	/**
+	 * Enter to dynamic Textbox by ID
+	 * 
+	 * @param driver
+	 * @param textboxID
+	 * @param value
+	 */
+	public void inputToTextboxID(WebDriver driver, String textboxID, String value) {
+		waitForElementVisible(driver, BasePageNocommerceUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		sendkeyToElement(driver, BasePageNocommerceUI.DYNAMIC_TEXTBOX_BY_ID, value, textboxID);
+	}
+	
+	/** Click to dynamic Button by Text
+	 * @param driver
+	 * @param buttonText
+	 */
+	public void clickButtonByText(WebDriver driver, String buttonText) {
+		waitForElementClick(driver, BasePageNocommerceUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		clickToElement(driver, BasePageNocommerceUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		
+	}
+	
+	/** Select item in dropdown by name attribute
+	 * 
+	 * @param driver
+	 * @param dropdownAttributeName
+	 * @param itemValue
+	 */
+	public void selectToDropdownByName(WebDriver driver, String dropdownAttributeName, String itemValue) {
+		waitForElementClick(driver, BasePageNocommerceUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownAttributeName);
+		selectItemInDefaultDropdownBy_Value(driver, BasePageNocommerceUI.DYNAMIC_DROPDOWN_BY_NAME, itemValue,dropdownAttributeName);
+	}
+	
+	/**
+	 * Click to dynamic checkbox by label name
+	 * 
+	 * @param driver
+	 * @param radioButtonLableName
+	 */
+	public void clickToRadioButtonLable(WebDriver driver, String radioButtonLableName) {
+		waitForElementClick(driver, BasePageNocommerceUI.DYNAMIC_RADIO_BUTTON_BY_LABLE, radioButtonLableName);
+		checkTheCheckboxOrRadio(driver, BasePageNocommerceUI.DYNAMIC_RADIO_BUTTON_BY_LABLE, radioButtonLableName);
+	}
+	
+	/**
+	 * CLick check box by Lable
+	 * 
+	 * @param driver
+	 * @param checkboxLableName
+	 */
+	public void clickToCheckboxByLable(WebDriver driver, String checkboxLableName) {
+		waitForElementClick(driver, BasePageNocommerceUI.DYNAMIC_CHECKBOX_BY_LABLE, checkboxLableName);
+		checkTheCheckboxOrRadio(driver, BasePageNocommerceUI.DYNAMIC_CHECKBOX_BY_LABLE, checkboxLableName);
+		
+	}
+	
+	/**
+	 * Get value in textbox by textboxID
+	 * 
+	 * @param driver
+	 * @param textboxID
+	 * @return
+	 */
+	public String getTextboxValueById(WebDriver driver, String textboxID) {
+		waitForElementVisible(driver, BasePageNocommerceUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		return getElementAttribute(driver, BasePageNocommerceUI.DYNAMIC_TEXTBOX_BY_ID, "value", textboxID);
+	}
+	
+	
+	/*
+	 * 
+	 * */
+	public UserHomePO openEndUserSite(WebDriver driver, String endUserUrl) {
+		openPageUrl(driver, endUserUrl);
+		return PageGeneratorManager_WordPressAdmin.getUserHomePOP(driver);
+	}
+	
+	/*
+	 * */
+	public AdminDashboardPO openAdminSite(WebDriver driver, String adminUrl) {
+		openPageUrl(driver, adminUrl);
+		return PageGeneratorManager_WordPressAdmin.getAdminDashboardPO(driver);
+	}
+
 }

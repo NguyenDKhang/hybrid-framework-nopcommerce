@@ -80,4 +80,5 @@ public class UserRegisterPageObject extends BasePage{
 		sendkeyToElement(driver, UserRegisterPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassWord);
 		
 	}
+
 }

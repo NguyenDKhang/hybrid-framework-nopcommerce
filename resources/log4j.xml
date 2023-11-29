@@ -38,6 +38,14 @@
     </appender>
 
 	<!-- Muốn aply log thì truyền package vào đây -->
+    <category name="com.wordpress.admin">
+        <priority value="all" />
+        <appender-ref ref="console" />
+        <appender-ref ref="logfile" />
+        <appender-ref ref="file" />
+        <appender-ref ref="testng" />
+    </category>
+    
     <category name="com.nopcommerce.TestCase">
         <priority value="all" />
         <appender-ref ref="console" />
