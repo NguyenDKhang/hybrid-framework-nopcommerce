@@ -2,6 +2,9 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
@@ -13,6 +16,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -41,7 +47,13 @@ public class BaseTest {
 		case "chrome":
 //			System.setProperty("webdriver.chrome.driver", pojectPath + "\\browserDrivers\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			System.setProperty("webdriver.chrome.args", "--disable-logging");
+			System.setProperty("webdriver.chrome.silentOutput", "true");
+			// Add extension
+			File file = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\google-translator.crx");
+			ChromeOptions optionsChorme = new ChromeOptions();
+			optionsChorme.addExtensions(file);
+			driver = new ChromeDriver(optionsChorme);
 			break;
 		case "h_chrome":
 			WebDriverManager.chromedriver().setup();
@@ -54,7 +66,21 @@ public class BaseTest {
 		case "firefox":
 //			System.setProperty("webdriver.gecko.driver", pojectPath + "\\browserDrivers\\geckodriver.exe");
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			
+			// Disable Browser driver log in Console
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,GlobalConstants.PROJECT_PATH + "\\browserLog\\firefox.log");
+						
+			// Add extension
+			FirefoxProfile profile = new FirefoxProfile();
+			File translatorFixFox = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\to_google_translate-4.2.0.xpi");
+			profile.addExtension(translatorFixFox);
+			profile.setAcceptUntrustedCertificates(true);
+			profile.setAssumeUntrustedCertificateIssuer(false);
+			FirefoxOptions firefox = new FirefoxOptions();
+			firefox.setProfile(profile);
+			
+			driver = new FirefoxDriver(firefox); 
 			break;
 		case "h_firefox":
 			WebDriverManager.firefoxdriver().setup();
@@ -81,8 +107,34 @@ public class BaseTest {
 		switch (browserName) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			
+			// Disable Browser driver log in Console
+			System.setProperty("webdriver.chrome.args", "--disable-logging");
+			System.setProperty("webdriver.chrome.silentOutput", "true");
+			// Add extension
+			File file = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\google-translator.crx");
+			ChromeOptions optionsChorme = new ChromeOptions();
+			Map<String,Object> prefs = new HashMap<String,Object>();
+			// Cài đặt lưu mặt khẩu
+			prefs.put("credentials_enable_service", false);
+			prefs.put("profile.password_manager_enabled", false);
+			// Lưu file donw load
+			prefs.put("profile.default_content_setting.popups", 0);
+			prefs.put("download.default_directory",GlobalConstants.PROJECT_PATH+ "\\downloadFiles");
+			
+			optionsChorme.setExperimentalOption("prefs", prefs);
+			
+			optionsChorme.addExtensions(file);
+			// Ngôn ngữ
+			optionsChorme.addArguments("--lang=vi");
+			// Tắt thông báo 
+			optionsChorme.addArguments("--disable-notifications");
+			
+			
+			
+			driver = new ChromeDriver(optionsChorme);
 			break;
+			
 		case "h_chrome":
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
@@ -90,9 +142,24 @@ public class BaseTest {
 			options.addArguments("window-size=1920×1080");
 			driver = new ChromeDriver(options);
 			break;
+			
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			
+			// Disable Browser driver log in Console
+			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
+			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,GlobalConstants.PROJECT_PATH + "\\browserLog\\firefox.log");
+						
+			// Add extension
+			FirefoxProfile profile = new FirefoxProfile();
+			File translatorFixFox = new File(GlobalConstants.PROJECT_PATH + "\\browserExtension\\to_google_translate-4.2.0.xpi");
+			profile.addExtension(translatorFixFox);
+			profile.setAcceptUntrustedCertificates(true);
+			profile.setAssumeUntrustedCertificateIssuer(false);
+			FirefoxOptions firefox = new FirefoxOptions();
+			firefox.setProfile(profile);
+			
+			driver = new FirefoxDriver(firefox); 
 			break;
 		case "h_firefox":
 			WebDriverManager.firefoxdriver().setup();
@@ -199,7 +266,6 @@ public class BaseTest {
 	protected String getCurrentDay() {
 		return getCurrentDate() + "/" + getCurrentMonth() + "/" + getCurrentYear();
 	}
-
 	
 	protected void closeBrowserDriver() {
 		String cmd = null;
@@ -246,6 +312,18 @@ public class BaseTest {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+		}
+	}
+
+	protected void showBrowserConsoleLogs(WebDriver driver) {
+		if(driver.toString().contains("chrome")||driver.toString().contains("edge")) {
+			LogEntries logs = driver.manage().logs().get("browser");
+			List<LogEntry> logList = logs.getAll();
+			for(LogEntry logging : logList) {
+				if(logging.getLevel().toString().toLowerCase().contains("error")) {
+					log.info("--------" + logging.getLevel().toString() + "---------\n" + logging.getMessage());
+				}
 			}
 		}
 	}

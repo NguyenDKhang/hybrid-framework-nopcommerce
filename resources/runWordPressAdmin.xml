@@ -11,9 +11,9 @@
   <parameter name="urlAdmin" value="http://localhost:55/wp-admin" />
   <parameter name="urlUser" value="http://localhost:55/" />
   <test name="Run on Firefor">
-   	<parameter name="browser" value="h_chrome"/>
+   	<parameter name="browser" value="firefox"/>
     <classes>
-       <class name="com.wordpress.admin.Post_01_Create_Read_Update_Delete_Search"/>
+       <class name="com.nopcommerce.TestCase.Level_18_Patterm_Object"/>
     </classes>
   </test>
   

@@ -40,7 +40,7 @@ public class Level_18_Patterm_Object extends BaseTest{
 		driver.get("https://demo.nopcommerce.com");
 		// Click logout thì bussines quay về trang home page
 		homePage = PageGeneratorManager.getUserHomePageObject(driver);
-				
+		showBrowserConsoleLogs(driver);
 		firstName ="khang" + random();
 		lastName="tesst "+random();
 		existingEmail = "khang"+random()+"@gmasidl.com";
@@ -57,7 +57,7 @@ public class Level_18_Patterm_Object extends BaseTest{
 		// Tên chức năng - Step + thứ tự: Mô tả
 		log.info("Register-Step 01: Navigate to register page");
 		registerPage = homePage.clickToRegisterLink();
-		
+		showBrowserConsoleLogs(driver);
 		registerPage.clickToRadioButtonLable(driver,"Female");
 		
 		log.info("Register-Step 02: Enter to firtname textbox with value is '"+lastName+"'");
@@ -90,7 +90,7 @@ public class Level_18_Patterm_Object extends BaseTest{
 	public void TC_02_Login() {
 		log.info("Login-Step 01: Navigate to Login page");
 		loginPage = homePage.openLoginPage();
-		
+		showBrowserConsoleLogs(driver);
 		log.info("Login-Step 02: Enter to mail textbox with value is '"+existingEmail+"'");
 		registerPage.inputToTextboxID(driver, "Email",existingEmail);
 		
@@ -100,6 +100,7 @@ public class Level_18_Patterm_Object extends BaseTest{
 		log.info("Login-Step 04: Click to login button");
 		registerPage.clickButtonByText(driver, "Log in");
 		homePage = PageGeneratorManager.getUserHomePageObject(driver);
+		showBrowserConsoleLogs(driver);
 	}
 	
 	@Test
@@ -129,6 +130,6 @@ public class Level_18_Patterm_Object extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		closeBrowserDriver();
+//		closeBrowserDriver();
 	}
 }  

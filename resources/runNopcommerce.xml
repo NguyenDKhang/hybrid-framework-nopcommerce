@@ -20,7 +20,7 @@
    	<parameter name="browser" value="chrome"/>
     <classes>
      <!--  <class name="com.nopcommerce.common.Common_01_Register_Cookie"/>-->
-       <class name="com.nopcommerce.TestCase.Level_14_Log_and_ReportNG"/>
+       <class name="com.nopcommerce.TestCase.Level_20_Fake_Data_III"/>
     </classes>
   </test> <!-- Test -->
   
